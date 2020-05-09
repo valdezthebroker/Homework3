@@ -16,25 +16,27 @@ body,
 
 body {
   font-family: sans-serif;
-  background-color: #f9fbfd;
+  background-color: #43464B;
 }
 
 .wrapper {
   padding-top: 30px;
   padding-left: 20px;
   padding-right: 20px;
-  background-color: #696969;
+  background-color: #43464B;
 }
 
 header {
   text-align: center;
   padding: 20px;
   padding-top: 0px;
+  background: ;
+  font-size: 30px;
   color: white;
 }
 
 .card {
-  background-color: #696969;
+  background-color: #708090;
   border-radius: 5px;
   border-width: 1px;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px 0px;
