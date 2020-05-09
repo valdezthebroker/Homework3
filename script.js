@@ -1,141 +1,130 @@
-const characterAmountRange = document.getElementById ("characterAmountRange")
-const characterAmountNumber = document.getElementById ("characterAmountNumber")
-const includeUppercaseElement = document.getElementById ("includeUppercase")
-const includeLowercaseElement = document.getElementById ("includeLowercase")
-const includeNumbersElement = document.getElementById ("includeNumbers")
-const includeSymbolsElement = document.getElementById ("includeSymbols")
-const form = document.getElementById("passwordGeneratorForm")
-const passwordDisplay = document.getElementById("passwordDisplay")
-
-const UPPERCASE_CHAR_CODES = arrayFromLowtoHigh(65, 90)
-const LOWERCASE_CHAR_CODES = arrayFromLowtoHigh(97, 122)
-const NUMBERS_CHAR_CODES = arrayFromLowtoHigh (48, 57)
-const SYMBOLS_CHAR_CODES = arrayFromLowtoHigh (33, 47).concat(arrayFromLowtoHigh(58, 64).concat(arrayFromLowtoHigh(91, 96).concat(arrayFromLowtoHigh(123, 126)
-
-characterAmountNumber.addEventListener("input", syncCharacterAmount)
-characterAmountRange.addEventListener("input", syncCharacterAmount)
-
-function syncCharacterAmount(e) {
-  const value = e.target.value
-  characterAmountNumber.value = value
-  characterAmountRange.value = value
-}
-
-form.addEventListener("generate", e => {
-  e.preventDefault()
-  const characterAmount = characterAmountNumber.value
-  const includeUppercase = includeUppercaseElement.checked
-  const includeLowercase = includeLowercaseElement.checked
-  const includeNumbers = includeNumbersElement.checked
-  const includeSymbols= includeSymbolsElement.checked
-  const password = generatePassword(characterAmount, includeUppercase, includeLowercase, includeNumbers, includeSymbols)
-  passwordDisplay.innertext = password
-})
-
-function generatePassword(characterAmount, includeUppercase, includeLowercase, includeNumbers, includeSymbols){
-  let charCodes = LOWERCASE_CHAR_CODES
-  if (includeUppercase) charCodes = charCodes.concat (UPPERCASE_CHAR_CODES)
-  if (includeNumbers) charCodes = charCodes.concat (NUMBERS_CHAR_CODES)
-  if (includeSymbols) charCodes = charCodes.concat (SYMBOLS_CHAR_CODES)
-
-  for (let i = 0; i < characterAmount, i++) {
-    const character = charCodes[Math.floor(Math.random() * charCodes.length)]
-    passwordCharacters.push(String.fromCharCode(characterCode)
-  }
-  return passwordCharacters.join("")
-}
-
-function arrayFromLowtoHigh(low,high) {
-  const array = []
-  for (let i = low; i <= high; i++) {
-    array.push(i)
-  }
-  return array
-}
-
-
-
-
-/*//DOM elements
-const result = document.getElementById("result");
-const result = document.getElementById("length");
-const result = document.getElementById("uppercase");
-const result = document.getElementById("lowercase");
-const result = document.getElementById("numbers");
-const result = document.getElementById("symbols");
-const result = document.getElementById("generate");
-const result = document.getElementById("clipboard");
-
-const randomFunc = {
-  lower: gentRandomLower,
-  upper: getRandomUpper,
-  number: getRandomNumber,
-  symbol: getRandomSymbol
-};
-
-generateEl.addEventListener("click", () => {
-  const length = +length.value;
-  const hasLower = lowercaseEl.checked;
-  const hasUpper = uppercaseEl.checked;
-  const hasNumber = numberEl.checked;
-  const hasSymbol = symbolEl.checked;
-
-  resultEl.innerText = generatePassword(
-    hasLower,
-    hasUpper,
-    hasNumber,
-    hasSymbol,
-    length
-  )
-}
-//Generate password function
-function generatePassword (lower, upper, number, symbol, length) {
-  //1. Create password var
-  2
-
-  let generatedPassword = "";
-
-  const typesCount = lower + upper + number + symbol;
-  const typesArr = [{ lower }, { upper }, {number}, {symbol}].filter
-  (
-    item => Object.values(item)[0]
-  );
-    if (typesCount === 0) {
-      return "";
-    }
-    for(let i = 0; i < length; i+=) {
-     typesArr.forEach(type => {
-       const funcName = Object.keys(type)[0];
-
-       generatedPassword += randomFunc[funcName]();
-     }); 
-    }
-        const finalPassword = generatedPassword.slice(0,length);
-
-        return finalPassword;
-      
-}
-/*
-//Generator functions - http://www.net-comber.com/charset.html
-function gentRandomLower() {
-  return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
-}
-function getRandomUpper() {
-  return String.fromCharCode(Math.floor(Math.random() * 26) + 65);
-}
-function getRandomNumber() {
-  return String.fromCharCode(Math.floor(Math.random() * 10) + 48);
-}
-function getRandomSymbol() {
-  const symbols = "!@#$%^&*(){}[]=<>/,.'";
-  return symbols[Math.floor(Math.random() * symbols.length];
-
-
 
 
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
+var charLowercase = "abcdefghijklmnopqrstuvwxyz";
+var charUppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+var charNumbers = "0123456789"
+var charSymbols = "!@#$%^&*()_-+={}[];:.?/"
+var passwordLength; 
+var uppercaseCheck;
+var numberCheck;
+var symbolCheck;
 
+//Need to determine length of password
+function determineLength(){
+  passwordLength = prompt ("Choose your length of password between 8-128 characters:");
+
+  if passwordLength < 8 {
+    alert ("Password must be between 8-128 characters");
+    determineLength();
+  }
+  else if (passwordLength > 128 {
+    alert ("Password must be between 8-128 characters");
+    determineLength();
+  }
+  else if (isNaN(passwordLength)){
+    alert ("Password must be between 8-128 characters, only use (!@#$%^&*()_-+={}[];:.?/) for symbols")
+  }
+  else {
+    alert ("Please choose at least one uppercase letter, number and symbol");
+  }
+  return passwordLength
+}
+
+//Need to choose uppercase letter
+function determineUppercase(){
+  uppercaseCheck = prompt ("Choose uppercase letters? \n (Yes or No)");
+  uppercaseCheck = uppercaseCheck.toLowerCase();
+
+  if (uppercaseCheck === null || uppercaseCheck === ""){
+    alert("Please answer Yes or No");
+    determineUppercase();
+  }
+  else if (uppercaseCheck === "yes" || uppercaseCheck === "y"){
+    uppercaseCheck = true;
+    return uppercaseCheck;
+  }
+  else if (uppercaseCheck === "no" || uppercaseCheck === "n"){
+    uppercaseCheck = false;
+    return uppercaseCheck;
+  }
+  else {
+    alert ("Please answer Yes or No");
+    determineUppercase();
+  }
+  return uppercaseCheck;
+}
+
+//Need to choose numbers
+function determineNumbers(){
+  numberCheck = prompt ("Choose numbers \n (Yes or No)");
+  numberCheck = numberCheck.toLowerCase();
+
+  if (numberCheck === null || numberCheck === ""){
+    alert ("Please answer Yes or No");
+    determineNumbers();
+  }
+  else if (numberCheck === "yes" || numberCheck ==="y"){
+    numberCheck = true;
+    return numberCheck;
+  }
+  else if (numberCheck === "no" || numberCheck ==="n"){
+    numberCheck = false;
+    return numberCheck;
+  }
+  else {
+    alert ("Please answer Yes or No");
+    determineNumbers();
+  }
+  return numberCheck;
+}
+
+//Need to choose symbols
+function determineSymbol(){
+  symbolCheck = prompt ("Choose symbols \n (Yes or No)");
+  symbolCheck = symbolCheck.toLowerCase();
+
+  if (symbolCheck === null || symbolCheck === ""){
+    alert ("Please answer Yes or No");
+    determineSymbol();
+  }
+  else if (symbolCheck === "yes" || symbolCheck ==="y"){
+    numberCheck = true;
+    return symbolCheck;
+  }
+  else if (symbolCheck === "no" || symbolCheck ==="n"){
+    symbolCheck = false;
+    return symbolCheck;
+  }
+  else {
+    alert ("Please answer Yes or No");
+    determineSymbol();
+  }
+  return symbolCheck;
+}
+//Combine uppercase, lowercase, numbers and symbols
+function generatePassword(){
+  determineLength();
+  console.log(passwordLength);
+  determineUppercase();
+  console.log(uppercaseCheck);
+  determineNumbers();
+  console.log(numbercheck);
+  determineSymbol();
+  console.log(symbolCheck);
+
+var characters = charLowercase;
+var password = "";
+  if (uppercaseCheck && numberCheck && symbolCheck){
+  characters += charUppercase + charNumbers + charSymbols;
+  }
+  else if (uppercaseCheck && numberCheck){
+    characters += charUppercase + charNumbers;
+  }
+  else if (numberCheck)
+}
+}
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();

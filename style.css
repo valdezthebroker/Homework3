@@ -10,37 +10,32 @@ body,
   height: 100%;
   margin: 0;
   padding: 0;
-  justify-content: center;
-  align-items: center;
 }
 
 body {
   font-family: sans-serif;
-  background-color: #43464B;
+  background-color: #f9fbfd;
 }
 
 .wrapper {
   padding-top: 30px;
   padding-left: 20px;
   padding-right: 20px;
-  background-color: #43464B;
 }
 
 header {
   text-align: center;
   padding: 20px;
   padding-top: 0px;
-  background: ;
-  font-size: 30px;
-  color: white;
+  color: hsl(206, 17%, 28%);
 }
 
 .card {
-  background-color: #708090;
+  background-color: hsl(0, 0%, 100%);
   border-radius: 5px;
   border-width: 1px;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px 0px;
-  color: #e35000;
+  color: hsl(206, 17%, 28%);
   font-size: 18px;
   margin: 0 auto;
   max-width: 800px;
@@ -51,26 +46,10 @@ header {
   content: " ";
   display: block;
   width: 100%;
-  background: #696969;
+  background: #e7e9eb;
   height: 2px;
 }
-.card-header h2 {
-  color: white;
-}
 
-form {
-  display: grid;
-  grid-template-columns: auto auto;
-  row-gap: 1rem;
-  column-gap: 10rem;
-  justify-content: center;
-  align-items: center;
-  background-color: #e35000;
-  color: white;
-}
-.form {
-
-}
 .card-body {
   min-height: 100px;
 }
@@ -95,7 +74,7 @@ form {
 
 .btn {
   border: none;
-  background-color: #e35000;
+  background-color: hsl(360, 91%, 36%);
   border-radius: 25px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 6px 0px rgba(0, 0, 0, 0.2) 0px 1px 1px
     0px;
